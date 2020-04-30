@@ -9,6 +9,9 @@ def plotData(x, y, h):
     plt.grid(color='gray', linestyle='--', linewidth=.6, axis='both', which='both', alpha=.4)
     plt.show()
 
+def calcR2(actual_y,predicted_y,avg_y):
+    return np.square(predicted_y - avg_y).sum()/np.square(actual_y - avg_y).sum()
+
 X = np.array([1,2,3,4,5])
 Y = np.array([3,4,2,4, 5])
 
@@ -22,5 +25,5 @@ m = len(X)
 H=[]
 for i in range(0,m):
     H.append(slope_m * X[i] + intercept_c)
-
+print("Slope : {}, Y Intercept : {}, Prediction Accuracy (R2 Error) : {}".format(slope_m,intercept_c,calcR2(Y,H,mean_y)))  
 plotData(X,Y,H)
