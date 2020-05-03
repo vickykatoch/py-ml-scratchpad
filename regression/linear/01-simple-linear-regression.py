@@ -21,10 +21,14 @@ def calcSlope(x, y, mean_x, mean_y):
     denominator = np.sum(np.square(x - mean_x))
     return numerator/denominator
 
+data = np.genfromtxt('../../data/test_scores.csv', delimiter=',')
 
-X = np.array([4, 4, 5, 5, 7, 7, 8, 9, 10, 11, 12])
-Y = np.array([6300, 5800, 5700, 4500, 4500,
-              4200, 4100, 3100, 2100, 2500, 2200])
+X = data[:,0]
+Y = data[:,1]
+
+# X = np.array([4, 4, 5, 5, 7, 7, 8, 9, 10, 11, 12])
+# Y = np.array([6300, 5800, 5700, 4500, 4500,
+#               4200, 4100, 3100, 2100, 2500, 2200])
 
 # Y = np.array([340, 368, 665, 954, 331, 556, 376])
 # X = np.array([1.5, 1.7, 2.8, 5, 1.3, 2.2, 1.3])
