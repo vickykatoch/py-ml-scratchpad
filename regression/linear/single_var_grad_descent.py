@@ -17,8 +17,7 @@ def run():
 
     [costs, thetas] = grad.gradient_descent(X, y, initial_theta, alpha, iterations)
     print(thetas)
-    print(costs)
     predictions = np.matmul(X, thetas)
-    viz.plotData(X[:, 1], y, predictions, 'City Population (10K)',
+    viz.plotDataMulti(X[:, 1], y, predictions,'Gradient Descent Single Variable', 'City Population (10K)',
             'Profits ($10K)', [4, 24], [-5, 25])
-    
+    viz.plotData(costs[:,0], costs[:,1],'Gradient Cost', 'Iterations','Cost')
