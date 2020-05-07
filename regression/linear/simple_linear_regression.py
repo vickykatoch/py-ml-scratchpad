@@ -3,12 +3,13 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from os import path
 
-def plotData(x, y, h):
+def plotData(x, y, h,title):
     plt.subplots()
     plt.plot(x, h)
     plt.scatter(x, y, c='red')
     plt.grid(color='gray', linestyle='--', linewidth=.6,
              axis='both', which='both', alpha=.4)
+    plt.title(title)
     plt.show()
 
 
@@ -34,7 +35,7 @@ def run():
     H = []
     for i in range(0, m):
         H.append(slope_m * X[i] + intercept_c)
-
+    title = "Slope : {}, Y Intercept : {}".format(slope_m, intercept_c)
     print("Slope : {}, Y Intercept : {}, Prediction Accuracy (R2 Error) : {}".format(
         slope_m, intercept_c, calcR2(Y, H, mean_y)))
-    plotData(X, Y, H)
+    plotData(X, Y, H,title)
