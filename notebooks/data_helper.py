@@ -1,18 +1,9 @@
 import numpy as np
-from os import path
+import os
 
 
 def getHousesData():
-    return np.genfromtxt('../data/houses.csv', delimiter=',')
-
-
-def getTestScroresData():
-    return np.genfromtxt('../data/test_scores.csv', delimiter=',')
-
-
-def getFoodCartData():
-    return np.genfromtxt('../data/food-cart.csv', delimiter=',')
-
+    return globals()['_dh'][0]
 
 def computeCost(X, y, theta):
     m = len(X)
