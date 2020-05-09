@@ -7,3 +7,6 @@
 
 import regression.linear.multivariate_gradient_descent as mgd
 mgd.run()
+
+# import regression.linear.ca_housing_skit as ca
+# ca.run()

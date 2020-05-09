@@ -1,10 +1,6 @@
 import numpy as np
 import os
 
-
-def getHousesData():
-    return globals()['_dh'][0]
-
 def computeCost(X, y, theta):
     m = len(X)
     costs = np.power(np.matmul(X, theta) - y, 2)
