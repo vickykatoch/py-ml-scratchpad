@@ -10,8 +10,6 @@ def gradient_descent(X, y, theta, alpha, iterations):
         sm = np.sum(np.multiply(h, X), axis=0)
         z = np.multiply(sm, alpha*1/m)
         theta = (theta.T - z).T
-        if(not np.all(theta)):
-            print('sdfsdf')
         cost[i, 0] = i
         cost[i, 1] = computeCost(X, y, theta)
     return [cost, theta]

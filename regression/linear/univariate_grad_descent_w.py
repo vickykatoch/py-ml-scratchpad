@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 from os import path
 import regression.api.gradient as grad
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 
 
 def _visualize(costX, costY, dataX, dataY, predictions, title):
@@ -30,14 +31,28 @@ def run():
         df['MinTemp'], df['MaxTemp'], test_size=0.2, random_state=0)
 
     m = len(X_train)
+    n = len(X_test)
     X_train = X_train.to_numpy().reshape(m, 1)
     y_train = y_train.to_numpy().reshape(m, 1)
+    X_test = X_test.to_numpy().reshape(n, 1)
+    y_test = y_test.to_numpy().reshape(n, 1)
     X = np.hstack([np.ones([m, 1]), X_train[:, 0].reshape(m, 1)])
-    iterations = 100
-    alpha = 0.01
+
+    X_test = np.hstack([np.ones([n, 1]), X_test[:, 0].reshape(n, 1)])
+    iterations = 2500
+    alpha = 0.004
     initial_theta = np.array([[0], [0]])
     [costs, thetas] = grad.gradient_descent(
         X, y_train, initial_theta, alpha, iterations)
     title = "Slope : {}, Y Intercept : {}".format(thetas[0, 0], thetas[1, 0])
-    predictions = np.matmul(X, thetas)
-    _visualize(costs[:, 0], costs[:, 1], X[:, 1], y_train, predictions, title)
+    predictions = np.matmul(X_test, thetas)
+    for i in range(0, 20):
+        print("Actual : {}, Predicted : {}".format(
+            y_test[i, 0], predictions[i, 0]))
+    mae = metrics.mean_absolute_error(y_test, predictions)
+    mse = metrics.mean_squared_error(y_test, predictions)
+    rmse = np.sqrt(mse)
+    print("Mean Absolute Error : {}, Mean Sqrd Error : {}, Root Mean Sqrd Error : {}".format(
+        mae, mse, rmse))
+
+    # _visualize(costs[:, 0], costs[:, 1], X[:, 1], y_train, predictions, title)
