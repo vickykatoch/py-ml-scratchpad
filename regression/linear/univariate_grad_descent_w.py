@@ -54,5 +54,4 @@ def run():
     rmse = np.sqrt(mse)
     print("Mean Absolute Error : {}, Mean Sqrd Error : {}, Root Mean Sqrd Error : {}".format(
         mae, mse, rmse))
-
     # _visualize(costs[:, 0], costs[:, 1], X[:, 1], y_train, predictions, title)
