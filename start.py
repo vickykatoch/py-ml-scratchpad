@@ -18,5 +18,5 @@
 # import avam.regression.gd.housing_predict_2 as hp
 # hp.run()
 
-import avam.titanic.titanic as titanic
+import avam.titanic.titanic_s3 as titanic
 titanic.run()
