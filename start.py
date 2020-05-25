@@ -11,5 +11,12 @@
 # import regression.linear.ca_housing_skit as ca
 # ca.run()
 
-import regression.linear.univariate_grad_descent_w as mgd
-mgd.run()
+# import regression.linear.univariate_grad_descent_w as mgd
+# mgd.run()
+
+
+# import avam.regression.gd.housing_predict_2 as hp
+# hp.run()
+
+import avam.titanic.titanic as titanic
+titanic.run()
