@@ -21,13 +21,15 @@
 # import avam.titanic.titanic_s3 as titanic
 # titanic.run()
 
-import logistics.processing.log_reg_1 as lr
-lr.run()
+# import logistics.processing.log_reg_1 as lr
+# lr.run()
 
 # import avam.api.www as www
 # www.run()
 # import avam.titanic.titanic_s3 as titanic
 # titanic.run()
 
+import logistics.processing.logistic_reg2 as lr
+lr.run()
 
 
