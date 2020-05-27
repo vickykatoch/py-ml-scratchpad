@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import precision_score, accuracy_score, confusion_matrix, recall_score
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from os import path
 import pickle
 import sklearn
@@ -13,7 +14,7 @@ data_dir = path.join(path.dirname(__file__), '../../data/titanic')
 
 def print_scores(title, model, X, y):
     print('******************************************************')
-    print(f'    {title}')
+    print(f'{title}')
     print('******************************************************')
     print('Score : {0:.5f}'.format(model.score(X, y)))
     print('Accuracy : {0:.5f}'.format(accuracy_score(y, model.predict(X))))
@@ -52,6 +53,7 @@ def run():
                   'penalty': ['l1', 'l2']}
     clf = GridSearchCV(model_log_reg, param_grid=parameters, cv=3)
     clf.fit(X_train, y_train)
+
     print(f'Best Scrore : {clf.best_params_}')
     Xt = np.matrix(test_df.loc[:, 'Age':].astype('float'))
     predictions = model_log_reg.predict(Xt)
@@ -60,6 +62,8 @@ def run():
     print(f'Survived : {len(sub_df[sub_df.Survived==1])}')
     sub_df.to_csv(path.join(data_dir, 'external/03_dummy.csv'), index=False)
 
-    pkl_file = open(path.join(path.dirname(
-        __file__), './model/model.pkl'), 'wb')
-    pickle.dump(clf, pkl_file)
+    scaler = MinMaxScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+
+    print(
+        f'Min : {X_train_scaled[:,0].min()}, Max : {X_train_scaled[:,0].min()}')
