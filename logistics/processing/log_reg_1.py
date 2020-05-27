@@ -13,6 +13,9 @@ m , n = X.shape
 initial_theta = np.zeros((n,1))
 alpha =0.001
 
+def predict(X, theta):
+    hx = api.sigmoid(api.hypothesis(X,theta.reshape(len(theta),1)))
+    return hx > .5
 
 def run():
     true_val = X[(y==1).reshape(100),:]
@@ -30,6 +33,14 @@ def run():
     test_theta = op.minimize(fun=api.cost, x0=test_theta,args=(X,y), method='TNC',jac=api.gradient).x
     plot_x = np.array([X[:,1].min() - 2, X[:,1].max() + 2])
     plot_y = (-1./test_theta[2]) * (test_theta[1] * plot_x + test_theta[0])
+
+    # Predict probability for a student with score 45 on exam 1 
+    # and score 85 on exam 2 
+    scores = np.array([1,45,85]).reshape(1,3)
+    canAdmitted = predict(scores,test_theta)
+    
+    print(f'Admission is predicted as : {canAdmitted}')
+
 
     plt.figure(figsize=(16,8))
     plt.scatter(true_val[:,1],true_val[:,2],marker='+',color='g')
